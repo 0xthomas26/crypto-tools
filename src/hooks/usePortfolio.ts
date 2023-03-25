@@ -1,5 +1,5 @@
 import useSWRImmutable from 'swr';
-import { zerionFetcher } from '../fetcher';
+import { nodeFetcher } from '../fetcher';
 
 export const useBalance = (walletAddress: string) => {
     const {
@@ -7,11 +7,9 @@ export const useBalance = (walletAddress: string) => {
         error,
         isValidating,
         mutate: mutateBalance,
-    } = useSWRImmutable(
-        `${process.env.ZERION_API_URL}/wallets/${walletAddress}/portfolio?currency=usd`,
-        zerionFetcher,
-        { refreshInterval: 10 }
-    );
+    } = useSWRImmutable(`${process.env.API_URL}/user/portfolio?walletAddress=${walletAddress}`, nodeFetcher, {
+        refreshInterval: 10,
+    });
 
     return {
         balances: data,
@@ -28,8 +26,8 @@ export const usePositions = (walletAddress: string, type: string) => {
         isValidating,
         mutate: mutatePositions,
     } = useSWRImmutable(
-        `${process.env.ZERION_API_URL}/wallets/${walletAddress}/positions/?currency=usd&filter[position_types]=${type}&sort=value`,
-        zerionFetcher
+        `${process.env.API_URL}/user/positions?walletAddress=${walletAddress}&type=${type}`,
+        nodeFetcher
     );
 
     return {
@@ -46,7 +44,7 @@ export const useChain = (chainId: string) => {
         error,
         isValidating,
         mutate: mutatePositions,
-    } = useSWRImmutable(`${process.env.ZERION_API_URL}/chains/${chainId}`, zerionFetcher);
+    } = useSWRImmutable(`${process.env.API_URL}/user/chains?chainId=${chainId}`, nodeFetcher);
 
     return {
         chain: data,

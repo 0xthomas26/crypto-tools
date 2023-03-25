@@ -26,27 +26,3 @@ export const nodeFetcher = async (url: string) => {
         return { error };
     }
 };
-
-export const zerionApiConfig = () => {
-    // Headers
-    axios.defaults.baseURL = process.env.ZERION_API_URL;
-    const config = {
-        headers: {
-            accept: 'application/json',
-            authorization: `Basic ${process.env.ZERION_API_KEY}`,
-        },
-    };
-
-    return config;
-};
-
-export const zerionFetcher = async (url: string) => {
-    try {
-        const header = zerionApiConfig();
-        const res = await axios.get(url, header);
-        return res.data;
-    } catch (error) {
-        console.log(error);
-        return { error };
-    }
-};
