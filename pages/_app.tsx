@@ -27,10 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     },
                     h2: {
                         fontSize: '35px',
-                        fontFamily: [
-                            '"Inter"', //Poppins
-                            'sans-serif',
-                        ].join(','),
+                        fontFamily: ['"Inter"', 'sans-serif'].join(','),
                         fontWeight: '800',
                     },
                     h3: {
