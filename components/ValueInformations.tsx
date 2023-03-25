@@ -9,29 +9,29 @@ type ValueInformationsTypes = {
     setOpen: any;
 };
 
+const networks = [
+    { name: 'Ethereum', image: '/images/ethereum.png' },
+    { name: 'Arbitrum', image: '/images/arbitrum.png' },
+    { name: 'Aurora', image: '/images/aurora.png' },
+    { name: 'Avalanche', image: '/images/avalanche.png' },
+    { name: 'BSC', image: '/images/bsc.png' },
+    { name: 'Fantom', image: '/images/fantom.png' },
+    { name: 'Gnosis Chain', image: '/images/xdai.png' },
+    { name: 'Optimism', image: '/images/optimism.png' },
+    { name: 'Polygon', image: '/images/polygon.png' },
+    { name: 'Solana', image: '/images/solana.png' },
+];
+
+const networksNFTs = [
+    { name: 'Ethereum', image: '/images/ethereum.png' },
+    { name: 'Arbitrum', image: '/images/arbitrum.png' },
+    { name: 'Avalanche', image: '/images/avalanche.png' },
+    { name: 'BSC', image: '/images/bsc.png' },
+    { name: 'Polygon', image: '/images/polygon.png' },
+];
+
 const ValueInformations = ({ open, setOpen }: ValueInformationsTypes) => {
     const [value, setValue] = useState(0);
-
-    const networks = [
-        { name: 'Ethereum', image: '/images/ethereum.png' },
-        { name: 'Arbitrum', image: '/images/arbitrum.png' },
-        { name: 'Aurora', image: '/images/aurora.png' },
-        { name: 'Avalanche', image: '/images/avalanche.png' },
-        { name: 'BSC', image: '/images/bsc.png' },
-        { name: 'Fantom', image: '/images/fantom.png' },
-        { name: 'Gnosis Chain', image: '/images/xdai.png' },
-        { name: 'Optimism', image: '/images/optimism.png' },
-        { name: 'Polygon', image: '/images/polygon.png' },
-        { name: 'Solana', image: '/images/solana.png' },
-    ];
-
-    const networksNFTs = [
-        { name: 'Ethereum', image: '/images/ethereum.png' },
-        { name: 'Arbitrum', image: '/images/arbitrum.png' },
-        { name: 'Avalanche', image: '/images/avalanche.png' },
-        { name: 'BSC', image: '/images/bsc.png' },
-        { name: 'Polygon', image: '/images/polygon.png' },
-    ];
 
     return (
         <Dialog open={open} onClose={() => setOpen(false)}>
