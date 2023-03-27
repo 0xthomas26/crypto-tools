@@ -43,12 +43,47 @@ export const useChain = (chainId: string) => {
         data,
         error,
         isValidating,
-        mutate: mutatePositions,
+        mutate: mutateChains,
     } = useSWRImmutable(`${process.env.API_URL}/user/chains?chainId=${chainId}`, nodeFetcher);
 
     return {
         chain: data,
-        mutatePositions,
+        mutateChains,
+        isLoading: isValidating,
+        isError: error,
+    };
+};
+
+export const useFungibles = (chainId: string, query: string | undefined) => {
+    const {
+        data,
+        error,
+        isValidating,
+        mutate: mutateFungibles,
+    } = useSWRImmutable(
+        `${process.env.API_URL}/user/fungibles?chainId=${chainId}&query=${query ? query : ''}`,
+        nodeFetcher
+    );
+
+    return {
+        fungibles: data,
+        mutateFungibles,
+        isLoading: isValidating,
+        isError: error,
+    };
+};
+
+export const useTransactions = () => {
+    const {
+        data,
+        error,
+        isValidating,
+        mutate: mutateTransactions,
+    } = useSWRImmutable(`${process.env.API_URL}/user/transactions`, nodeFetcher);
+
+    return {
+        transactions: data,
+        mutateTransactions,
         isLoading: isValidating,
         isError: error,
     };

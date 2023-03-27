@@ -32,7 +32,6 @@ const RenderNFT = ({ NFTimage, name }: RenderNFTTypes) => {
     useEffect(() => {
         const verifyImage = async () => {
             const path = getImgUrl(NFTimage);
-            console.log(path);
 
             if (!path) {
                 setRender('error');
@@ -48,12 +47,12 @@ const RenderNFT = ({ NFTimage, name }: RenderNFTTypes) => {
     return (
         <>
             {render === 'ok' && imageUrl?.length > 0 ? (
-                <NextImage src={imageUrl} width={300} height={300} alt={name} style={{ objectFit: 'contain' }} />
+                <NextImage src={imageUrl} width={250} height={250} alt={name} style={{ objectFit: 'contain' }} />
             ) : (
                 <div
                     style={{
-                        width: '300px',
-                        height: '300px',
+                        width: '250px',
+                        height: '250px',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',

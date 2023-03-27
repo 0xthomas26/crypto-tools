@@ -5,13 +5,14 @@ import Navbar from '../components/Navbar';
 import NFTs from '../components/NFTs';
 import Portfolio from '../components/Portfolio';
 import Positions from '../components/Positions';
+import TransactionsHistory from '../components/TransactionsHistory';
 import WalletConnect from '../components/WalletConnect';
 import { useMe } from '@/src/hooks/useAccount';
 import TabPanel from '@/components/TabPanel';
 
 const Home = () => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [value, setValue] = useState(0);
     const { user } = useMe();
 
@@ -23,13 +24,10 @@ const Home = () => {
                     padding: '5%',
                     marginLeft: isMobile ? '0' : '230px',
                     maxWidth: '100%',
-                    paddingTop: isMobile ? '130px' : '30px',
+                    paddingTop: '30px',
                 }}
             >
                 <h1>Portfolio</h1>
-                <section id="crypto-prices">
-                    <CryptoPrices />
-                </section>
                 <section id="portfolio" style={{ marginTop: '40px' }}>
                     {user && <Portfolio walletAddress={user?.account} />}
                 </section>
@@ -67,6 +65,13 @@ const Home = () => {
                                     fontSize: '18px',
                                 }}
                             />
+                            <Tab
+                                label="History"
+                                style={{
+                                    textTransform: 'none',
+                                    fontSize: '18px',
+                                }}
+                            />
                         </Tabs>
                         <TabPanel value={value} index={0}>
                             <section id="positions" style={{ marginTop: '40px' }}>
@@ -76,6 +81,11 @@ const Home = () => {
                         <TabPanel value={value} index={1}>
                             <section id="nfts" style={{ marginTop: '40px' }}>
                                 <NFTs />
+                            </section>
+                        </TabPanel>
+                        <TabPanel value={value} index={2}>
+                            <section id="history" style={{ marginTop: '40px' }}>
+                                <TransactionsHistory />
                             </section>
                         </TabPanel>
                     </div>

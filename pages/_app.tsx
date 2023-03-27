@@ -11,6 +11,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
+import Head from 'next/head';
 
 export default function App({ Component, pageProps }: AppProps) {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -51,10 +52,10 @@ export default function App({ Component, pageProps }: AppProps) {
                     },
                 },
                 palette: {
-                    mode: prefersDarkMode ? 'dark' : 'light',
+                    mode: 'dark',
                 },
             }),
-        [prefersDarkMode]
+        []
     );
 
     theme = responsiveFontSizes(theme);
@@ -87,11 +88,16 @@ export default function App({ Component, pageProps }: AppProps) {
     });
 
     return (
-        <ThemeProvider theme={theme}>
-            <WagmiConfig client={client}>
-                <CssBaseline />
-                <Component {...pageProps} />
-            </WagmiConfig>
-        </ThemeProvider>
+        <>
+            <Head>
+                <title>Crypto Tools</title>
+            </Head>
+            <ThemeProvider theme={theme}>
+                <WagmiConfig client={client}>
+                    <CssBaseline />
+                    <Component {...pageProps} />
+                </WagmiConfig>
+            </ThemeProvider>
+        </>
     );
 }

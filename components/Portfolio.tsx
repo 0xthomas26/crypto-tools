@@ -30,7 +30,9 @@ const Portfolio = ({ walletAddress }: PortfolioTypes) => {
                 }}
             >
                 <CircularProgress size={30} />
-                <Typography variant="body2">fetching data...</Typography>
+                <Typography variant="body2" style={{ marginLeft: '5px' }}>
+                    fetching data...
+                </Typography>
             </div>
         );
 
@@ -39,7 +41,7 @@ const Portfolio = ({ walletAddress }: PortfolioTypes) => {
             <CardContent>
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Typography variant="h2" style={{ fontSize: '28px', marginRight: '10px' }}>
-                        Total value
+                        Net worth
                     </Typography>
                     <IconButton onClick={() => setOpen(true)}>
                         <InfoOutlined />
@@ -57,9 +59,9 @@ const Portfolio = ({ walletAddress }: PortfolioTypes) => {
                         variant="body1"
                         style={{ color: balances?.data?.attributes?.changes?.absolute_1d >= 0 ? 'green' : 'red' }}
                     >
-                        {`${formatter.format(balances?.data?.attributes?.changes?.percent_1d)}% ($${formatter.format(
-                            balances?.data?.attributes?.changes?.absolute_1d
-                        )})`}
+                        {`${balances?.data?.attributes?.changes?.absolute_1d >= 0 ? '+' : ''}${formatter.format(
+                            balances?.data?.attributes?.changes?.percent_1d
+                        )}% ($${formatter.format(balances?.data?.attributes?.changes?.absolute_1d)})`}
                     </Typography>
                 </div>
                 <Stack direction="row" spacing={2} alignItems="center" overflow="auto">

@@ -102,7 +102,12 @@ const ValueInformations = ({ open, setOpen }: ValueInformationsTypes) => {
                                                 borderRadius: '10px',
                                             }}
                                         >
-                                            <Image src={elem.image} alt={elem.name} width={20} height={20} />
+                                            <Image
+                                                src={elem.image}
+                                                alt={`${elem.name}-${key}`}
+                                                width={20}
+                                                height={20}
+                                            />
                                             <Typography
                                                 variant="body1"
                                                 style={{ marginLeft: '10px', fontWeight: 'bold' }}
@@ -130,7 +135,12 @@ const ValueInformations = ({ open, setOpen }: ValueInformationsTypes) => {
                                                 borderRadius: '10px',
                                             }}
                                         >
-                                            <Image src={elem.image} alt={elem.name} width={20} height={20} />
+                                            <Image
+                                                src={elem.image}
+                                                alt={`${elem.name}-${key}`}
+                                                width={20}
+                                                height={20}
+                                            />
                                             <Typography
                                                 variant="body1"
                                                 style={{ marginLeft: '10px', fontWeight: 'bold' }}

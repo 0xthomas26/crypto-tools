@@ -35,7 +35,7 @@ const CryptoPrices = () => {
                             >
                                 <Image
                                     src={elem.image}
-                                    alt={elem.name}
+                                    alt={`${elem.name}-${key}`}
                                     width={25}
                                     height={25}
                                     style={{ objectFit: 'contain', marginRight: '10px' }}

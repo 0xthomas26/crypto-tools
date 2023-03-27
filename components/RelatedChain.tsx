@@ -18,13 +18,15 @@ const RelatedChain = ({ chainId }: RelatedChainTypes) => {
                 marginTop: '5px',
             }}
         >
-            <Image
-                src={chain?.data?.attributes?.icon?.url}
-                alt={chain?.data?.attributes?.name}
-                width={18}
-                height={18}
-                style={{ objectFit: 'contain', marginRight: '5px' }}
-            />
+            {chain?.data?.attributes?.icon?.url && (
+                <Image
+                    src={chain?.data?.attributes?.icon?.url}
+                    alt={`${chain?.data?.attributes?.name}-${chainId}`}
+                    width={18}
+                    height={18}
+                    style={{ objectFit: 'contain', marginRight: '5px' }}
+                />
+            )}
             <Typography variant="body2">{chain?.data?.attributes?.name}</Typography>
         </div>
     );

@@ -82,7 +82,7 @@ const PositionsCard = ({ type, portfolioPosition, walletPositions }: PositionsCa
                                                     {elem?.attributes?.fungible_info?.icon?.url ? (
                                                         <Image
                                                             src={elem?.attributes?.fungible_info?.icon?.url}
-                                                            alt={elem?.attributes?.fungible_info?.symbol}
+                                                            alt={`${elem?.attributes?.fungible_info?.symbol}-${key}`}
                                                             width={30}
                                                             height={30}
                                                             style={{ objectFit: 'contain' }}
@@ -166,7 +166,9 @@ const PositionsCard = ({ type, portfolioPosition, walletPositions }: PositionsCa
                                                                     ? 'green'
                                                                     : 'red',
                                                         }}
-                                                    >{`${elem?.attributes?.changes?.percent_1d.toFixed(
+                                                    >{`${
+                                                        elem?.attributes?.changes?.absolute_1d >= 0 ? '+' : ''
+                                                    }${elem?.attributes?.changes?.percent_1d.toFixed(
                                                         2
                                                     )}% ($${elem?.attributes?.changes?.absolute_1d.toFixed(
                                                         2
