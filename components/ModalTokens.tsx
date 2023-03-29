@@ -14,22 +14,14 @@ import {
     InputAdornment,
 } from '@mui/material';
 import Image from 'next/image';
-import { Close, InputOutlined, Search, Verified } from '@mui/icons-material';
-import { useFungibles } from '@/src/hooks/usePortfolio';
+import { Close, Search, Verified } from '@mui/icons-material';
 import { useState } from 'react';
-
-const tokens = [
-    { name: 'Ethereum', image: '/images/ethereum.png' },
-    { name: 'Arbitrum', image: '/images/arbitrum.png' },
-    { name: 'Aurora', image: '/images/aurora.png' },
-    { name: 'Avalanche', image: '/images/avalanche.png' },
-    { name: 'BSC', image: '/images/bsc.png' },
-    { name: 'Fantom', image: '/images/fantom.png' },
-    { name: 'Gnosis Chain', image: '/images/xdai.png' },
-    { name: 'Optimism', image: '/images/optimism.png' },
-    { name: 'Polygon', image: '/images/polygon.png' },
-    { name: 'Solana', image: '/images/solana.png' },
-];
+import ETHTokenList from '../src/constants/ETHtokenList.json';
+import ArbTokenList from '../src/constants/ARBtokenList.json';
+import BSCTokenList from '../src/constants/BSCtokenList.json';
+import POLYGONTokenList from '../src/constants/POLYGONtokenList.json';
+import AVALANCHETokenList from '../src/constants/AVALANCHEtokenList.json';
+import FANTOMTokenList from '../src/constants/FANTOMtokenList.json';
 
 type ModalTokensTypes = {
     open: boolean;
@@ -37,15 +29,35 @@ type ModalTokensTypes = {
     type: string;
     setPayToken: any;
     setReceiveToken: any;
-    network: string;
+    network: number;
+};
+
+type Token = {
+    symbol: string;
+    name: string;
+    decimals: number;
+    address: string;
+    logoURI: string;
+    tags: Array<string>;
 };
 
 const ModalTokens = ({ open, setOpen, type, setPayToken, setReceiveToken, network }: ModalTokensTypes) => {
     const [query, setQuery] = useState<string | undefined>(undefined);
-    const { fungibles } = useFungibles(network, query);
 
-    console.log(fungibles);
-
+    const fungibles =
+        network === 1
+            ? ETHTokenList
+            : network === 42161
+            ? ArbTokenList
+            : network === 56
+            ? BSCTokenList
+            : network === 137
+            ? POLYGONTokenList
+            : network === 43114
+            ? AVALANCHETokenList
+            : network === 250
+            ? FANTOMTokenList
+            : ETHTokenList;
     const handleChange = (event: any) => {
         setQuery(event.target.value as string);
     };
@@ -85,13 +97,12 @@ const ModalTokens = ({ open, setOpen, type, setPayToken, setReceiveToken, networ
                     }
                     fullWidth
                 />
-                <Typography
-                    variant="body2"
-                    style={{ marginTop: '10px' }}
-                >{`Showing results for ${network}.`}</Typography>
+                <Typography variant="body2" style={{ marginTop: '10px' }}>{`Showing results for ${
+                    network === 1 ? 'Ethereum' : 'other'
+                }.`}</Typography>
                 <div style={{ overflowY: 'scroll', height: '320px' }}>
                     <List>
-                        {fungibles?.data?.map((elem: any, key: number) => {
+                        {fungibles?.map((elem: Token, key: number) => {
                             return (
                                 <ListItem key={key} disablePadding>
                                     <ListItemButton
@@ -102,10 +113,10 @@ const ModalTokens = ({ open, setOpen, type, setPayToken, setReceiveToken, networ
                                         }}
                                     >
                                         <ListItemIcon>
-                                            {elem?.attributes?.icon?.url ? (
+                                            {elem?.logoURI ? (
                                                 <Image
-                                                    src={elem?.attributes?.icon?.url}
-                                                    alt={`${elem?.attributes?.name}-${key}`}
+                                                    src={elem?.logoURI}
+                                                    alt={`${elem.name}-${key}`}
                                                     width={40}
                                                     height={40}
                                                     style={{ objectFit: 'contain', marginRight: '10px' }}
@@ -124,7 +135,7 @@ const ModalTokens = ({ open, setOpen, type, setPayToken, setReceiveToken, networ
                                                     }}
                                                 >
                                                     <Typography variant="body2" style={{ fontSize: 10 }}>
-                                                        {elem?.attributes?.symbol.slice(0, 4)}
+                                                        {elem?.symbol?.slice(0, 4)}
                                                     </Typography>
                                                 </div>
                                             )}
@@ -134,17 +145,12 @@ const ModalTokens = ({ open, setOpen, type, setPayToken, setReceiveToken, networ
                                                 style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
                                             >
                                                 <ListItemText
-                                                    primary={`${elem?.attributes?.name.slice(0, 25)}${
-                                                        elem?.attributes?.name?.length > 30 ? '...' : ''
+                                                    primary={`${elem?.name.slice(0, 25)}${
+                                                        elem?.name?.length > 30 ? '...' : ''
                                                     }`}
                                                 />
-                                                {elem?.attributes?.flags?.verified && (
-                                                    <Verified style={{ marginLeft: '5px', fontSize: '20px' }} />
-                                                )}
+                                                <Verified style={{ marginLeft: '5px', fontSize: '20px' }} />
                                             </div>
-                                            <Typography variant="body2">{`$${elem?.attributes?.market_data?.price?.toFixed(
-                                                2
-                                            )}`}</Typography>
                                         </div>
                                     </ListItemButton>
                                 </ListItem>

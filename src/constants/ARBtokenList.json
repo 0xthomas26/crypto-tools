@@ -1,0 +1,52 @@
+[
+    {
+        "symbol": "ETH",
+        "name": "Ethereum",
+        "decimals": 18,
+        "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "logoURI": "https://tokens.1inch.io/0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.png",
+        "tags": ["native"]
+    },
+    {
+        "symbol": "USDT",
+        "name": "Tether USD",
+        "decimals": 6,
+        "address": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+        "logoURI": "https://tokens.1inch.io/0xdac17f958d2ee523a2206206994597c13d831ec7.png",
+        "tags": ["tokens", "PEG:USD"]
+    },
+    {
+        "symbol": "USDC",
+        "name": "USD Coin (Arb1)",
+        "decimals": 6,
+        "address": "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8",
+        "logoURI": "https://tokens.1inch.io/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.png",
+        "eip2612": true,
+        "tags": ["tokens", "PEG:USD"]
+    },
+    {
+        "symbol": "WBTC",
+        "name": "Wrapped BTC",
+        "decimals": 8,
+        "address": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+        "logoURI": "https://tokens.1inch.io/0x2260fac5e5542a773aa44fbcfedf7c193bc2c599.png",
+        "tags": ["tokens", "PEG:BTC"]
+    },
+    {
+        "symbol": "WETH",
+        "name": "Wrapped Ether",
+        "decimals": 18,
+        "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+        "logoURI": "https://tokens.1inch.io/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2.png",
+        "wrappedNative": "true",
+        "tags": ["tokens", "PEG:ETH"]
+    },
+    {
+        "symbol": "DAI",
+        "name": "Dai Stablecoin",
+        "decimals": 18,
+        "address": "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+        "logoURI": "https://tokens.1inch.io/0x6b175474e89094c44da98b954eedeac495271d0f.png",
+        "tags": ["tokens", "PEG:USD"]
+    }
+]

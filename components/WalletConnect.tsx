@@ -11,7 +11,11 @@ const useIsMounted = () => {
     return mounted;
 };
 
-const WalletConnect = () => {
+type WalletConnectTypes = {
+    watch: boolean;
+};
+
+const WalletConnect = ({ watch }: WalletConnectTypes) => {
     const isMounted = useIsMounted();
     const theme = useTheme();
     const [loading, setLoading] = useState(false);
@@ -126,48 +130,61 @@ const WalletConnect = () => {
                     {error.message}
                 </Typography>
             )}
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginTop: '20px',
-                    marginBottom: '20px',
-                }}
-            >
-                <div style={{ marginRight: '10px', height: '.5px', backgroundColor: 'lightgray', width: '100px' }} />
-                <Typography variant="body1" style={{ fontSize: '20px' }}>
-                    OR
-                </Typography>
-                <div style={{ marginLeft: '10px', height: '.5px', backgroundColor: 'lightgray', width: '100px' }} />
-            </div>
-            <Typography variant="h2">Watch any wallet</Typography>
-            <div style={{ minWidth: '350px', marginTop: '20px' }}>
-                <TextField
-                    placeholder="Wallet address"
-                    value={walletAddress}
-                    onChange={(e) => setWalletAddress(e.target.value)}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <Button
-                                    style={{ backgroundColor: theme.palette.primary.dark, color: 'white' }}
-                                    onClick={() => handleWalletAddress()}
-                                    disabled={loadingWallet ? true : false}
-                                >
-                                    {loadingWallet ? <CircularProgress size={20} /> : 'Watch'}
-                                </Button>
-                            </InputAdornment>
-                        ),
-                    }}
-                    style={{ borderRadius: '20px' }}
-                    fullWidth
-                />
-            </div>
-            {error && walletAddress && (
-                <Typography variant="body2" style={{ color: 'red', textAlign: 'center' }}>
-                    {error.message}
-                </Typography>
+            {watch && (
+                <div>
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginTop: '20px',
+                            marginBottom: '20px',
+                        }}
+                    >
+                        <div
+                            style={{
+                                marginRight: '10px',
+                                height: '.5px',
+                                backgroundColor: 'lightgray',
+                                width: '100px',
+                            }}
+                        />
+                        <Typography variant="body1" style={{ fontSize: '20px' }}>
+                            OR
+                        </Typography>
+                        <div
+                            style={{ marginLeft: '10px', height: '.5px', backgroundColor: 'lightgray', width: '100px' }}
+                        />
+                    </div>
+                    <Typography variant="h2">Watch any wallet</Typography>
+                    <div style={{ minWidth: '350px', marginTop: '20px' }}>
+                        <TextField
+                            placeholder="Wallet address"
+                            value={walletAddress}
+                            onChange={(e) => setWalletAddress(e.target.value)}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <Button
+                                            style={{ backgroundColor: theme.palette.primary.dark, color: 'white' }}
+                                            onClick={() => handleWalletAddress()}
+                                            disabled={loadingWallet ? true : false}
+                                        >
+                                            {loadingWallet ? <CircularProgress size={20} /> : 'Watch'}
+                                        </Button>
+                                    </InputAdornment>
+                                ),
+                            }}
+                            style={{ borderRadius: '20px' }}
+                            fullWidth
+                        />
+                    </div>
+                    {error && walletAddress && (
+                        <Typography variant="body2" style={{ color: 'red', textAlign: 'center' }}>
+                            {error.message}
+                        </Typography>
+                    )}
+                </div>
             )}
         </Grid>
     );

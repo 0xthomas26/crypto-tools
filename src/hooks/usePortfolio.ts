@@ -54,7 +54,7 @@ export const useChain = (chainId: string) => {
     };
 };
 
-export const useFungibles = (chainId: string, query: string | undefined) => {
+export const useFungibles = (chainId: string | undefined, query: string | undefined) => {
     const {
         data,
         error,

@@ -92,7 +92,7 @@ const Home = () => {
                 )}
                 {!user && (
                     <div style={{ marginTop: '40px' }}>
-                        <WalletConnect />
+                        <WalletConnect watch={true} />
                     </div>
                 )}
             </div>

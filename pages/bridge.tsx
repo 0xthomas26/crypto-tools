@@ -26,7 +26,7 @@ const Bridge = () => {
                 </section>
                 {!user && (
                     <div style={{ marginTop: '40px' }}>
-                        <WalletConnect />
+                        <WalletConnect watch={false} />
                     </div>
                 )}
             </div>
